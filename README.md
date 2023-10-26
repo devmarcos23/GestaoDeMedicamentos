@@ -1,6 +1,6 @@
 # Projeto de Gestão de Medicamentos
 
-Bem-vindo ao repositório do Projeto de Gestão de Medicamentos. Este repositório contém o código-fonte e a documentação relacionada ao sistema de gestão de medicamentos desenvolvido por mim com base em minha formação no curso de Formação Inicial e Continuada de Desenvolvimento (FIC_DEV).
+Bem-vindo ao repositório do Projeto de Gestão de Medicamentos. Este repositório contém o código-fonte do sistema de gestão de medicamentos desenvolvido por mim com base em minha formação no curso de Formação Inicial e Continuada de Desenvolvimento (FIC_DEV).
 
 ## Visão Geral
 
@@ -11,8 +11,6 @@ Este sistema foi desenvolvido para a aprendizagem do funcionamento de sistemas d
 Neste repositório, você encontrará:
 
 - `src/`: O diretório contendo o código-fonte do projeto.
-
-- `docs/`: Documentação relacionada ao projeto.
 
 ## Visualização do Design
 
