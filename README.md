@@ -6,6 +6,12 @@ Bem-vindo ao repositório do Projeto de Gestão de Medicamentos. Este repositór
 
 Este sistema foi desenvolvido para a aprendizagem do funcionamento de sistemas de gestão de medicamentos em casos reais, com o objetivo de otimizar a administração de medicamentos em uma variedade de contextos, incluindo hospitais, clínicas e farmácias.
 
+## Implantar para produção
+
+Para criar uma compilação de produção, chame mvnw clean package (Windows) ou ./mvnw clean package (Mac e Linux). Isso criará um arquivo JAR com todas as dependências e recursos front-end, prontos para serem implantados. O arquivo pode ser encontrado na pasta de destino após a conclusão da compilação.
+
+Uma vez construído o arquivo .JAR, você pode executá-lo usando java -jar target/GestaoMedicamento-0.0.1-SNAPSHOT.jar
+
 ## Conteúdo do Repositório
 
 Neste repositório, você encontrará:
