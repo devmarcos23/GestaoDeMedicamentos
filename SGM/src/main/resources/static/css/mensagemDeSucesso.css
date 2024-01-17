@@ -1,0 +1,25 @@
+/* Estilo do modal */
+.modal {
+    display: block;
+    position: fixed;
+    text-align: center;
+    bottom: -100%;; /* Ajuste a posição vertical conforme necessário */
+    left: calc(50% - 200px); /* Centralizado horizontalmente */
+    width: 400px;
+    height: 70px; 
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 20px; /* Margem inferior para criar o efeito de flutuação */
+    border-radius: 10px;
+   
+    transition: bottom 0.5s; /* Animação para mostrar/esconder */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo do conteúdo do modal */
+.modal h2,
+.modal p {
+    margin: 0;
+}
+
+

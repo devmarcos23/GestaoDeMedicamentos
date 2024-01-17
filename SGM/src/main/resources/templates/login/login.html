@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Medicamentos</title>
+
+    <link rel="stylesheet" href="/css/reset.css">
+   <link rel="stylesheet" href="/css/login.css">
+
+    <link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+</head>
+
+<body >
+	
+    <h1>Sistema de Gestão de Medicamentos</h1>
+
+    <div class="login">
+        <h3>Bem vindo</h3>
+        <p>Insira suas credenciais</p>
+
+        <form th:action="@{/login}" method="post">
+            <label for="id">Usuario</label>
+            <input type="text" name="username" id="id" placeholder="Usuario">
+           	
+           
+           	 
+            <label for="pw">Senha</label>
+            <input type="password" name="password" id="pw" placeholder="Senha">
+			
+        	<p id="erroPassword" th:if="${badCredentials == true}" class="error">Credenciais Incorretas!</p>
+            <button class="btn">Login</button>
+        </form>
+    </div>
+</body>
+
+</html>

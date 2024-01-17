@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Editar medicamento</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/mensagemDeSucesso.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<script src="/js/exibirModal.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos active"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+
+				<a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin "><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda"><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div class="setor-novo-medicamento">
+			<div class="top-novo-medicamento">
+				<a th:href="@{/medicamentos/listamedicamentos}">
+					<i class="retornar fa-solid fa-reply"></i>
+					<h2>Estoque</h2>
+					<span id="quantidade-medicamentos">(<span
+							th:text="${contagemMedicamentosExistentes}">00</span>)</span>
+				</a>
+				<p>> Editar medicamento</p>
+			</div>
+			<p>Todos os campos são obrigatórios</p>
+			<div class="mid-novo-fabricante">
+				<form id="form" th:action="@{/medicamentoscontroller/editarmedicamento}" method="post">
+					<input type="hidden" th:value="${medicamentoByid.get().getIdMedicamento()}" name="idMedicamento">
+
+					<label class="nfaa" for="nome">Nome do medicamento</label>
+					<input class="nfab" type="text" name="nomeMedicamento" id="nome"
+						th:value="${medicamentoByid.get().getNomeMedicamento()}" required>
+
+
+					<label class="nfba" for="quantidade-medicamento">Quantidade mínima <i
+							class="fa-regular fa-circle-question" style="color: #000000;"
+							title="Preencha com a quantidade miníma de medicamentos que o estoque deverá manter deste medicamento"></i></label>
+					<input class="nfbb" min="0" type="number" name="quantidadeMinima" id="quantidade-medicamento"
+						th:value="${medicamentoByid.get().getQuantidadeMinima}" required>
+
+					<label class="nfca" for="grupo-medicinal">Grupo medicinal</label>
+					<input class="nfcb" list="grupomedicinal" name="grupoMedicinal" id="grupo-medicinal" required>
+					<datalist id="grupomedicinal">
+						<option th:value="${medicamentoByid.get().getGrupoMedicinal}" th:text="${medicamentoByid.get().getGrupoMedicinal}"
+							selected></option>
+
+						<option value="Analgésicos">Analgésicos</option>
+						<option value="Antipiréticos">Antipiréticos</option>
+						<option value="Anti-inflamatórios">Anti-inflamatórios</option>
+						<option value="Antibióticos">Antibióticos</option>
+						<option value="Antivirais">Antivirais</option>
+						<option value="Antifúngicos">Antifúngicos</option>
+						<option value="Antiparasitários">Antiparasitários</option>
+						<option value="Agentes cardiovasculares">Agentes cardiovasculares</option>
+						<option value="Agentes psicotrópicos">Agentes psicotrópicos</option>
+						<option value="Agentes hormonais">Agentes hormonais</option>
+						<option value="Agentes gastrointestinais">Agentes gastrointestinais</option>
+						<option value="Agentes respiratórios">Agentes respiratórios</option>
+						<option value="Agentes dermatológicos">Agentes dermatológicos</option>
+						<option value="Agentes oftalmológicos">Agentes oftalmológicos</option>
+						<option value="Agentes otológicos">Agentes otológicos</option>
+						<option th:each="grupoMedicinal : ${gruposMedicinais}" th:value="${grupoMedicinal[0]}"
+							th:text="${grupoMedicinal[0]}"></option>
+					</datalist>
+
+					<button class="btn-nf" type="submit" style="background-color: #03A9F5;">Atualizar</button>
+				</form>
+			</div>
+		</div>
+		<div id="modal" class="modal">
+			<h3 id="mensagemModal" th:text="${mensagem}"></h3>
+		</div>
+	</main>
+</body>
+
+
+<script src="/js/saudacao.js"></script>
+
+
+
+
+</html>

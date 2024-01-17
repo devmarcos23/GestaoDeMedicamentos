@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Administração</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/mensagemDeSucesso.css">
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	
+	
+
+
+
+	<script src="/js/exibirModal.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+
+				<a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+				
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin active"><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda"><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div class="espaco-admin">
+			<h2>Administração</h2>
+			<div class="admin-users">
+				<div class="quantidade-usuarios">
+					<h5>Usuário(s):</h5>
+					<p th:text="${contagemUsuarios}">0</p>
+					<p><strong>Cadastrado(s)</strong></p>
+				</div>
+				<div class="tabela-usuarios">
+					<div class="th">
+						<h4>Nome do Usuário</h4>
+						<h4>Username</h4>
+						<h4>Cargo</h4>
+						<h4>Ação</h4>
+					</div>
+					<div class="td">
+						<table>
+							<tr th:each="usuario : ${usuarios}">
+								<td th:text="${usuario.nomeUsuario}"></td>
+								<td th:text="${usuario.username}"></td>
+								<td th:text="${usuario.cargo}"></td>
+								<td>
+									<a th:if="${cargoUsuario == role_super_admin || (cargoUsuario == role_admin && usuario.cargo == role_user)}"
+										th:href="@{/usuariocontroller/deletarusuario/{idUsuario}(idUsuario=${usuario.idUsuario})}"
+										onclick="return confirm('Tem certeza de que deseja excluir este usuário?')"> <i
+											class="trash fa-solid fa-trash"></i></a>
+								</td>
+
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				<!--<a th:href="@{/usuariocontroller/deletarusuario/{idUsuario}(idUsuario=${usuario.idUsuario})}" onclick="return confirm('Tem certeza de que deseja excluir este usuario?')"> <i class="trash fa-solid fa-trash"></i>
+									</a>-->
+				<div class="cadastro-user">
+					<h4>Cadastro de novo usuário</h4>
+					<form th:action="@{/usuariocontroller/salvarusuario}" method="post"
+						onsubmit="return verificarUsuario()">
+
+						<label class="cuaa" for="name">Nome</label>
+						<input class="cuab" type="text" name="nomeUsuario" id="name" required>
+
+						<label class="cuba" for="username">Username</label>
+						<input class="cubb" type="text" name="username" id="username" required>
+						<p class="erro-msg" id="erroUsername"></p>
+
+						<label class="cuca" for="password">Senha</label>
+						<input class="cucb" type="password" name="password" id="password" required>
+
+						<label class="cuda" for="cargo">Cargo</label>
+						<select class="cudb" name="cargo" id="cargo" required>
+							<option value="" selected>Selecione</option>
+							<option th:if="${cargoUsuario == role_super_admin}" th:value="${role_super_admin}">Super
+								Administrador</option>
+							<option th:value="${role_admin}">Administrador</option>
+							<option th:value="${role_user}">Usuario</option>
+
+						</select>
+
+						<button class="btn-cu" type="submit">Cadastrar</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="modal" class="modal">
+			<h3 id="mensagemModal" th:text="${mensagem}"></h3>
+		</div>
+	</main>
+</body>
+
+
+<script src="/js/saudacao.js"></script>
+<script src="/js/usuarioVerificacao.js"></script>
+
+
+
+</html>

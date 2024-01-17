@@ -1,0 +1,1418 @@
+body {
+	width: 100vw;
+	height: 100vh;
+}
+
+main {
+	display: flex;
+	height: calc(100vh - 50px);
+}
+
+main>div {
+	width: 100%;
+	height: 100%;
+	background: #EDF1F5;
+	padding: 25px;
+}
+
+main>div>p {
+	color: #ff0000;
+	font-size: 12px;
+}
+
+
+
+
+
+/* ======= Page Header ======= */
+
+header {
+	width: 100%;
+	height: 50px;
+	display: flex;
+	align-items: center;
+}
+
+header .logo {
+	background-color: #1d242e;
+	min-width: 260px;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+header .logo .fa-hospital {
+	margin-right: 5px;
+	color: #fff;
+	height: 30px;
+}
+
+header .logo p {
+	color: #fff;
+	font-size: 2rem;
+}
+
+header .temp {
+	background-color: #F7FAFD;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	justify-content: end;
+	align-items: center;
+	color: #1D242E;
+	gap: 5px 20px;
+	padding-right: 3rem;
+}
+
+header .temp img {
+	width: 1.125rem;
+	height: 1.125rem;
+}
+
+/* ======= Page Header ======= */
+
+
+
+
+
+/* ======= NavBar ======= */
+
+nav {
+	display: flex;
+	flex-direction: column;
+	min-width: 260px;
+	background: #EDF1F5;
+	position: relative;
+	border-right: 1px solid #283342;
+}
+
+nav .user {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding: 20px;
+}
+
+nav .menus {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+	margin: 50px 0;
+}
+
+nav .menus p {
+	width: 90%;
+	align-self: center;
+	border: 1px solid #ccc;
+}
+
+nav .menus a {
+	width: 100%;
+	height: 50px;
+	color: #283342;
+	/*transition: .5s ease-in-out;*/
+	display: flex;
+	align-items: center;
+	padding-left: 25px;
+	gap: 15px;
+}
+
+nav .menus a:hover {
+	background-color: #009099;
+	color: #fff;
+}
+
+nav .footer {
+	display: flex;
+	gap: 50px;
+	padding: 20px;
+	font-size: 10px;
+	color: #283342B2;
+	position: absolute;
+	bottom: 0;
+}
+
+nav .menus a.active {
+	color: #fff;
+	background-color: #009099;
+}
+
+/* ======= NavBar ======= */
+
+
+/* ======= Dashboard ======= */
+
+.dash .alertas {
+	max-width: 750px;
+	min-width: max-content;
+	background: #EDF1F5;
+	min-height: 200px;
+	display: flex;
+	justify-content: space-between;
+	margin: 50px 50px 0 50px;
+	gap: 15px;
+}
+
+.dash .alertas .alerta {
+	width: 225px;
+	height: 150px;
+	padding: 15px;
+	text-align: center;
+	position: relative;
+}
+
+.dash .alertas .alerta.estoque {
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.dash .alertas .alerta.vencimento {
+	border: 1px solid #FCBA02;
+	border-radius: 4px;
+}
+
+.dash .alertas .vencimento .more {
+	border-top: 1px solid #FCBA02;
+	background-color: #FCBA024D;
+}
+
+.dash .alertas .alerta img {
+	width: 30px;
+}
+
+.dash .alertas .alerta h3 {
+	margin-bottom: 3px;
+}
+
+.dash .alertas .alerta p {
+	font-size: 14px;
+}
+
+.dash .alertas .alerta .more {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	font-size: 12px;
+	text-align: center;
+	width: 100%;
+	padding: 5px 0;
+	color: #1D242E;
+}
+
+.dash .dados {
+	max-width: 750px;
+	min-width: max-content;
+	display: grid;
+	margin-left: 48px;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	padding: 25px 0 25px;
+	gap: 15px 25px;
+}
+
+.dash .dados .base {
+	max-width: 500px;
+	min-width: max-content;
+	border: 1px solid #ccc;
+	padding: 15px 25px;
+	text-wrap: nowrap;
+	background-color: #fff;
+}
+
+.dash .dados .base h4 {
+	padding-bottom: 5px;
+	border-bottom: 1px solid #ccc;
+}
+
+.dash .dados .base>div {
+	display: flex;
+	padding: 15px 50px 15px 0;
+	justify-content: space-between;
+	gap: 10px;
+}
+
+.dash .dados .base p {
+	font-size: 12px;
+}
+
+.dash .dados .base h5 {
+	margin-bottom: 5px;
+}
+
+.dash .dados .base .num-vencimentos {
+	flex-direction: column;
+}
+
+.dash .quant-estoque {
+	grid-area: 1 / 1 / 2 / 3;
+}
+
+.dash .quant-movimentacao {
+	grid-area: 1 / 3 / 2 / 5;
+}
+
+.dash .quant-fornecedores {
+	grid-area: 2 / 1 / 3 / 3;
+}
+
+.dash .quant-saida {
+	grid-area: 2 / 3 / 3 / 5;
+}
+
+.status-bom {
+	border: 1px solid #01A768;
+}
+
+.status-ruim {
+	border: 1px solid #FF0000;
+}
+
+.none {
+	display: none;
+}
+
+/* ======= Dashboard ======= */
+
+
+
+
+/* ======= Admin ======= */
+
+.admin-users {
+	margin-top: 25px;
+	display: grid;
+	grid-template-columns: repeat(3, 200px);
+	grid-template-rows: repeat(2, 1fr);
+	column-gap: 155px;
+}
+
+.quantidade-usuarios {
+	width: 200px;
+	height: 200px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.quantidade-usuarios h5 {
+	border-bottom: 1px solid #ccc;
+	padding: 7px 15px;
+	font-size: 14px;
+}
+
+.quantidade-usuarios>p {
+	padding: 7px 15px 0 15px;
+}
+
+.quantidade-usuarios p {
+	font-size: 15px;
+}
+
+.tabela-usuarios {
+	width: max-content;
+	height: 200px;
+	grid-area: 1 / 2 / 2 / 2;
+}
+
+.tabela-usuarios .th {
+	height: 35px;
+	display: grid;
+	grid-column-gap: 30px;
+	grid-template-columns: 150px 120px 125px 75px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.tabela-usuarios .th h4:nth-child(4) {
+	text-align: center;
+}
+
+.tabela-usuarios .td {
+	height: 165px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.tabela-usuarios .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.tabela-usuarios tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 30px;
+	grid-template-rows: 50px;
+	grid-template-columns: 150px 120px 125px 75px;
+}
+
+.tabela-usuarios tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+.tabela-usuarios tr td:last-child {
+	text-align: center;
+}
+
+
+#erroUsername {
+	grid-area: 3 / 3 / 3 / 5;
+	/* Define a posição na grade */
+	margin-top: 0px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+.cadastro-user {
+	grid-area: 2 / 1 / 3 / 4;
+	width: 1018px;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	margin-top: 35px;
+}
+
+.cadastro-user h4 {
+	padding: 5px 15px;
+	border-bottom: 1px solid #ccc;
+}
+
+.cadastro-user form {
+	padding: 15px;
+	display: grid;
+	grid-template-columns: repeat(9, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	row-gap: 3px;
+	column-gap: 15px;
+}
+
+.cuaa {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.cuab {
+	grid-area: 2 / 1 / 3 / 3;
+}
+
+.cuba {
+	grid-area: 1 / 3 / 2 / 4;
+}
+
+.cubb {
+	grid-area: 2 / 3 / 3 / 5;
+}
+
+.cuca {
+	grid-area: 1 / 5 / 2 / 6;
+}
+
+.cucb {
+	grid-area: 2 / 5 / 3 / 7;
+}
+
+.cuda {
+	grid-area: 1 / 7 / 2 / 8;
+}
+
+.cudb {
+	grid-area: 2 / 7 / 3 / 9;
+}
+
+.btn-cu {
+	grid-area: 2 / 9 / 3 / 9;
+	padding: 5px 10px;
+	text-align: center;
+	background-color: #009099;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	justify-self: center;
+	transition: .3s ease-in-out;
+	cursor: pointer;
+}
+
+.btn-cu:hover {
+	transform: scale(1.05);
+}
+
+.cadastro-user form input,
+.cadastro-user form select {
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #E3EBF3;
+	padding: 5px 10px;
+}
+
+/* ======= Admin ======= */
+
+
+
+
+
+/* ======= Fabricantes ======= */
+
+.main-fabricantes {
+	width: 1110px;
+}
+
+.top-fabricantes {
+	padding: 25px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.top-fabricantes .pesquisar input {
+	padding: 5px;
+	width: 250px;
+	margin-right: 10px;
+	background-color: #E3EBF3;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.top-fabricantes .pesquisar .btn-search {
+	cursor: pointer;
+	border: none;
+	font-size: 16px;
+	transition: .3s ease-in-out;
+}
+
+.top-fabricantes>a {
+	background-color: #F0483E;
+	color: #fff;
+	border: none;
+	padding: 5px 25px;
+	border-radius: 3px;
+	transition: .3s ease-in-out;
+	cursor: pointer;
+}
+
+.top-fabricantes>a:hover {
+	transform: scale(1.05);
+}
+
+.top-fabricantes>a .plus {
+	margin-right: 10px;
+}
+
+.main-fabricantes .tabela-fabricantes .th {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 75px;
+	grid-template-columns: 230px 275px 145px 135px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.main-fabricantes .tabela-fabricantes .td {
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.main-fabricantes .tabela-fabricantes .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.main-fabricantes .tabela-fabricantes tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 75px;
+	grid-template-columns: 230px 275px 145px 135px;
+}
+
+.main-fabricantes .tabela-fabricantes tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+.tabela-fabricantes tr td:last-child a {
+	margin-right: 15px;
+}
+
+.tabela-fabricantes tr td a:first-child {
+	color: #F0483E;
+}
+
+/* ======= Fabricantes ======= */
+
+
+
+
+
+/* ======= Vencimentos ======= */
+
+.setor-vencimento {
+	width: max-content;
+	margin-top: 50px;
+}
+
+.vencimento-voltar {
+	display: flex;
+	align-items: center;
+}
+
+.tabela-vencimento .th {
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-columns: 150px 170px 100px 100px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.tabela-vencimento .td {
+	width: 100%;
+	height: 350px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.tabela-vencimento .td table {
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.tabela-vencimento tr {
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-rows: 50px;
+	grid-template-columns: 150px 170px 100px 100px;
+}
+
+.tabela-vencimento tr td:nth-child(2) {
+	text-align: center;
+}
+
+.tabela-vencimento tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+/* ======= Vencimentos ======= */
+
+
+
+
+
+/* ======= Lotes ======= */
+
+.header-lotes {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.header-lotes span {
+	margin: 0 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.main-lotes {
+	width: max-content;
+}
+
+.top-lotes {
+	padding: 25px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.top-lotes .pesquisar input {
+	padding: 5px;
+	width: 250px;
+	margin-right: 10px;
+	background-color: #E3EBF3;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.top-lotes .pesquisar .btn-search {
+	cursor: pointer;
+	border: none;
+	font-size: 16px;
+	transition: .3s ease-in-out;
+}
+
+.top-lotes>a {
+	background-color: #F0483E;
+	color: #fff;
+	border: none;
+	padding: 5px 25px;
+	border-radius: 3px;
+	transition: .3s ease-in-out;
+	cursor: pointer;
+}
+
+.top-lotes>a:hover {
+	transform: scale(1.05);
+}
+
+.top-lotes>a .plus {
+	margin-right: 10px;
+}
+
+.main-lotes .tabela-lotes .th {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 25px;
+	grid-template-columns: 85px 165px 160px 64px 94px 91px 100px 50px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.main-lotes .tabela-lotes .td {
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.main-lotes .tabela-lotes .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.main-lotes .tabela-lotes tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 25px;
+	grid-template-columns: 85px 165px 160px 60px 94px 94px 94px 110px;
+}
+
+.main-lotes .tabela-lotes tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+.main-lotes .tabela-lotes .td table a.trash-lote {
+	text-align: center;
+	margin-right: 20px;
+
+}
+
+.main-lotes .tabela-lotes tr td:last-child {
+	text-align: center;
+
+}
+
+
+/* ======= Lotes ======= */
+
+
+
+
+
+/* ======= Medicamentos ======= */
+
+.header-medicamentos {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.main-medicamentos {
+	width: 1100px;
+}
+
+.top-medicamentos {
+	padding: 25px 0;
+	display: flex;
+	justify-content: space-between;
+}
+
+.top-medicamentos .pesquisar input {
+	padding: 5px;
+	width: 250px;
+	margin-right: 10px;
+	background-color: #E3EBF3;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.top-medicamentos .pesquisar .btn-search {
+	cursor: pointer;
+	border: none;
+	font-size: 16px;
+	transition: .3s ease-in-out;
+}
+
+.top-medicamentos>a {
+	background-color: #F0483E;
+	color: #fff;
+	border: none;
+	padding: 5px 25px;
+	border-radius: 3px;
+	transition: .3s ease-in-out;
+	cursor: pointer;
+}
+
+.top-medicamentos>a .plus {
+	margin-right: 10px;
+}
+
+.top-medicamentos>a:hover {
+	transform: scale(1.05);
+}
+
+.tabela-medicamentos .th {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-columns: 275px 255px 165px 145px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.tabela-medicamentos .th h4:nth-child(4) {
+	text-align: left;
+}
+
+.tabela-medicamentos .td {
+	width: 100%;
+	height: 250px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.tabela-medicamentos .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.tabela-medicamentos tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-rows: 50px;
+	grid-template-columns: 275px 255px 90px 230px;
+}
+
+.tabela-medicamentos tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+.tabela-medicamentos .td table tr td:nth-child(3) {
+	text-align: left;
+}
+
+.tabela-medicamentos tr td:last-child {
+	text-align: right;
+}
+
+.tabela-medicamentos tr td:last-child a {
+	margin-right: 20px;
+}
+
+
+
+.tabela-medicamentos .td table tr td a.editar-link {
+	/* Adicione seus estilos personalizados aqui */
+	/* Por exemplo, você pode definir a cor de fundo ou a cor do texto */
+	color: black;
+	/* Cor vermelha como exemplo */
+	/* Outros estilos */
+}
+
+.tabela-medicamentos tr td a:first-child {
+	color: #F0483E;
+}
+
+
+
+/* ======= Medicamentos ======= */
+
+
+
+
+
+
+/* ======= novo lote ======= */
+.trash {
+	transition: .3s ease-in-out;
+	color: #F0483E;
+}
+
+.trash:hover {
+	transform: scale(1.05);
+}
+
+.aaa {
+	grid-area: 1 / 1 / 2 / 3;
+}
+
+.aab {
+	grid-area: 2 / 1 / 3 / 3;
+}
+
+.bba {
+	grid-area: 1 / 3 / 2 / 5;
+}
+
+.bbb {
+	grid-area: 2 / 3 / 3 / 5;
+}
+
+.cca {
+	grid-area: 3 / 1 / 4 / 3;
+}
+
+.ccb {
+	grid-area: 4 / 1 / 5 / 3;
+}
+
+.dda {
+	grid-area: 3 / 3 / 4 / 4;
+}
+
+.ddb {
+	grid-area: 4 / 3 / 5 / 4;
+}
+
+.eea {
+	grid-area: 5 / 1 / 6 / 2;
+
+}
+
+.eeb {
+	grid-area: 6 / 1 / 7 / 2;
+
+
+}
+
+.ffa {
+	grid-area: 3 / 4 / 4 / 5
+}
+
+.ffb {
+	grid-area: 4 / 4 / 5 / 5;
+
+}
+
+
+.gga {
+	grid-area: 5 / 2 / 6 / 3;
+}
+
+.ggb {
+	grid-area: 6 / 2 / 7 / 3;
+}
+
+#erroIdLote {
+	grid-area: 2 / 1 / 3 / 3;
+	/* Define a posição na grade */
+	margin-top: 40px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+#erroDataEntrega {
+	grid-area: 6 / 1 / 7 / 4;
+	/* Define a posição na grade */
+	margin-top: 40px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+#erroDataFabricacao {
+	
+	
+	grid-area: 5 / 4 / 5 / 5;
+	/* Define a posição na grade */
+	margin-top: -15px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+#erroDataValidade {
+	grid-area: 6 / 3 / 7 / 5;
+	/* Define a posição na grade */
+	margin-top: 0px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+.btn-novo-lote {
+	grid-area: 7 / 1 / 8 / 2;
+	background-color: #F0483E;
+	border: none;
+	width: 150px;
+	height: 35px;
+	border-radius: 3px;
+	color: #fff;
+	cursor: pointer;
+	transition: .3s ease-in-out;
+}
+
+.btn-novo-lote:hover,
+.btn-nf:hover,
+.btn-ef:hover {
+	transform: scale(1.05);
+}
+
+/* ======= novo lote ======= */
+
+
+/* ======= novo fabricante ======= */
+
+main>div>form {
+	display: grid;
+	grid-column-gap: 15px;
+	margin-top: 35px;
+	max-width: 900px;
+}
+
+main>div>form label,
+.mid-novo-fabricante form label {
+	margin-bottom: 10px;
+}
+
+main>div>form input,
+main>div>form select,
+.mid-novo-fabricante form input {
+	margin-bottom: 25px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	background-color: #E3EBF3;
+	padding: 5px 10px;
+}
+
+.top-novo-lote,
+.top-novo-fabricante {
+	margin-top: 15px;
+}
+
+.top-novo-fabricante,
+.top-novo-medicamento,
+.top-novo-lote {
+	display: flex;
+	align-items: center;
+}
+
+.top-novo-fabricante a,
+.top-novo-medicamento a,
+.top-novo-lote a {
+	display: flex;
+	align-items: center;
+	color: #ccc;
+}
+
+.top-novo-fabricante a span,
+.top-novo-medicamento a span,
+.top-novo-lote a span,
+.header-medicamentos span,
+.header-dispensa span {
+	margin: 0 10px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.top-novo-fabricante p,
+.top-novo-medicamento p,
+.top-novo-lote p {
+	font-weight: 700;
+	font-size: 1.2rem;
+}
+
+
+.mid-novo-fabricante form {
+	width: 530px;
+	display: grid;
+	grid-column-gap: 30px;
+	margin-top: 35px;
+}
+
+.nfaa {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.nfab {
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.nfba {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.nfbb {
+	grid-area: 2 / 2 / 3 / 3;
+}
+
+.nfca {
+	grid-area: 3 / 1 / 4 / 2;
+}
+
+.nfcb {
+	grid-area: 4 / 1 / 5 / 2;
+}
+
+#erroCnpj {
+	grid-area: 2 / 2 / 2 / 3;
+	/* Define a posição na grade */
+	margin-top: 40px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+#erroMedicamento {
+	grid-area: 2 / 1 / 2 / 3;
+	/* Define a posição na grade */
+	margin-top: 40px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+.btn-nf {
+	grid-area: 5 / 1 / 6 / 2;
+	width: 50%;
+	background-color: #F0483E;
+	border: none;
+	height: 35px;
+	color: #fff;
+	cursor: pointer;
+	transition: .3s ease-in-out;
+	border-radius: 3px;
+}
+
+.btn-ef {
+	grid-area: 5 / 1 / 6 / 2;
+	width: 50%;
+	background-color: #03A9F5;
+	border: none;
+	height: 35px;
+	color: #fff;
+	cursor: pointer;
+	transition: .3s ease-in-out;
+	border-radius: 3px;
+}
+
+.mid-novo-fabricante form input::-webkit-outer-spin-button,
+.mid-novo-fabricante form input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+}
+
+
+
+
+
+/* ======= Dispensa ======= */
+
+.setor-dispensa {
+	width: 1100px;
+}
+
+.header-dispensa {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+}
+
+.main-dispensa {
+	width: 1100px;
+}
+
+.top-dispensa {
+	padding: 25px 0;
+	display: flex;
+	justify-content: space-between;
+
+}
+
+.top-dispensa .pesquisar input {
+	padding: 5px;
+	width: 250px;
+	margin-right: 10px;
+	background-color: #E3EBF3;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+}
+
+.top-dispensa .pesquisar .btn-search {
+	cursor: pointer;
+	border: none;
+	font-size: 16px;
+	transition: .3s ease-in-out;
+}
+
+.tabela-dispensa .th {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 55px;
+	grid-template-columns: 160px 210px 170px 150px 110px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.tabela-dispensa .td {
+	width: 100%;
+	height: 350px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.tabela-dispensa .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.tabela-dispensa tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 55px;
+	grid-template-rows: 50px;
+	grid-template-columns: 160px 210px 170px 150px 200px;
+}
+
+.tabela-dispensa tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+/* ======= Dispensa ======= */
+
+
+
+
+
+/* ======= Detalhes Medicamento ======= */
+
+.setor-detalhes {
+	width: 1110px;
+	margin: 25px 0;
+}
+
+.setor-detalhes .tabela-lotes .th {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-columns: 130px 150px 170px 100px 100px 100px;
+	padding: 5px 50px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+
+.setor-detalhes .tabela-lotes .td {
+	width: 100%;
+	height: 150px;
+	overflow: hidden;
+	overflow-y: scroll;
+	background-color: #fff;
+	border: 1px solid #ccc;
+}
+
+.setor-detalhes .tabela-lotes .td table {
+	width: 100%;
+	padding: 7px 0px 7px 50px;
+	line-height: 50px;
+}
+
+.setor-detalhes .tabela-lotes tr {
+	width: 100%;
+	display: grid;
+	grid-column-gap: 50px;
+	grid-template-rows: 50px;
+	grid-template-columns: 130px 150px 170px 100px 100px 100px;
+}
+
+.setor-detalhes .tabela-lotes tr:last-child {
+	border-bottom: none;
+}
+
+.setor-detalhes .tabela-lotes tr td {
+	overflow: hidden;
+	text-wrap: nowrap;
+}
+
+
+.top-detalhes-medicamento {
+	display: flex;
+	gap: 25px;
+	margin-top: 25px;
+	height: 150px;
+}
+
+.grupo-medicamento {
+	width: 400px;
+	background-color: #fff;
+}
+
+.top-detalhes-medicamento .estoque {
+	width: 685px;
+	background-color: #fff;
+}
+
+.top-detalhes-medicamento h4 {
+	padding: 10px 25px;
+	border-bottom: 1px solid #ccc;
+	font-size: 18px;
+}
+
+.top-detalhes-medicamento .grupo-medicamento h6 {
+	padding: 25px;
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.top-detalhes-medicamento .estoque>div {
+	display: flex;
+	justify-content: space-around;
+	padding: 25px;
+}
+
+.top-detalhes-medicamento .estoque h6 {
+	font-size: 16px;
+	font-weight: 500;
+}
+
+.dispensar-medicamento {
+	width: 1110px;
+	background-color: #fff;
+}
+
+.dispensar-medicamento h4 {
+	padding: 10px 25px;
+	border-bottom: 1px solid #ccc;
+}
+
+.dispensar-medicamento form {
+	display: grid;
+	padding: 15px 25px;
+	gap: 5px 15px;
+}
+
+.dispensar-medicamento form input {
+	padding: 0 5px;
+}
+
+.dmaa {
+	grid-area: 1 / 1 / 2 / 2;
+}
+
+.dmab {
+	grid-area: 2 / 1 / 3 / 2;
+}
+
+.dmba {
+	grid-area: 1 / 2 / 2 / 3;
+}
+
+.dmbb {
+	grid-area: 2 / 2 / 3 / 3;
+}
+
+.dmca {
+	grid-area: 1 / 3 / 2 / 4;
+}
+
+.dmcb {
+	grid-area: 2 / 3 / 3 / 4;
+}
+
+.dmda {
+	grid-area: 1 / 4 / 2 / 5;
+}
+
+.dmdb {
+	grid-area: 2 / 4 / 3 / 5;
+}
+
+
+#erroQtdLoteSaida {
+	grid-area: 3 / 3 / 3 / 4;
+	/* Define a posição na grade */
+	margin-top: 0px;
+	/* Espaço superior opcional entre o input e a mensagem de erro */
+	color: red;
+	/* Cor do texto de erro (opcional) */
+	font-size: 13px;
+	/* Tamanho da fonte (opcional) */
+	/* display: none; /* Oculta as mensagens de erro por padrão */
+}
+
+.btn-dm {
+	grid-area: 2 / 5 / 3 / 6;
+	width: 65%;
+	padding: 5px;
+	text-align: center;
+	background-color: #03A9F5;
+	color: #fff;
+	border: none;
+	border-radius: 3px;
+	justify-self: center;
+	transition: .3s ease-in-out;
+	cursor: pointer;
+}
+
+.btn-dm:hover {
+	transform: scale(1.05);
+}
+
+/* ======= Detalhes Medicamento ======= */
+
+
+
+.retornar {
+	margin-right: 10px;
+	color: #000;
+}
