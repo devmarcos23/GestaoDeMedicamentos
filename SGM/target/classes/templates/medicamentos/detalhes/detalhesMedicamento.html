@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes medicamento</title>
+
+    <link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/mensagemDeSucesso.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<script src="/js/exibirModal.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <i class="fa-regular fa-hospital"></i>
+            <p>SGM</p>
+        </div>
+        <div class="temp">
+            <div>
+                <p id="saudacao"></p>
+                <p id="data"></p>
+            </div>
+
+            <img id="img">
+
+        </div>
+    </header>
+
+    <main>
+        <nav>
+            <div class="user">
+                <img src="/img/Rectangle 7.png" alt="Foto de perfil">
+                <div>
+                    <p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+                </div>
+                <a class="dropdown" th:href="@{/logout}" ><i class="fa-solid fa-right-from-bracket"></i></a>
+            </div>
+
+          <div class="menus">
+                <a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+                <a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+         		<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos active"><i class="fa-solid fa-dolly"></i>Estoque</a>
+                <a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+                
+               <a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+              
+           		<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+           			<a th:href="@{/espacoadmin}" class="admin "><i class="fa-solid fa-shield-halved"></i>Administração</a>
+           		</span>
+           		<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+           		<a th:href="@{/ajudacontroller}" class="ajuda"><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+            </div>
+
+            <div class="footer">
+                <p>Criado por Marcos © 2023</p>
+                <p>v1</p>
+            </div>
+        </nav>
+
+        <div class="main-novo-medicamento">
+            <div class="top-novo-medicamento">
+                <a th:href="@{/medicamentos/listamedicamentos}">
+					<i class="retornar fa-solid fa-reply"></i>
+                    <h2>Estoque </h2>
+                   	
+                    <span>(<span th:text="${contagemMedicamento} ?: 0"></span>)</span>
+                    
+                </a>
+                <p id="nome-medicamento">> <span th:text="${medicamentoPorId.get().getNomeMedicamento()} ?: ' '"></span></p>
+            </div>
+            <div class="detalhes-medicamento">
+                <div class="top-detalhes-medicamento">
+                    <div class="grupo-medicamento">
+                        <h4>Grupo Medicinal</h4>
+                        <h6><span th:text="${medicamentoPorId.get().getGrupoMedicinal()} ?: ' '"></span></h6>
+                    </div>
+                    <div class="estoque">
+                        <h4>Estoque</h4>
+                        <div>
+						
+                            <div>
+                                <h6><span th:text="${quantidadeDeMedicamentos} ?: 0"></span></h6>
+                                <h6>Quantidade</h6>
+                            </div>
+                           
+                            <div>
+                                <h6><span th:text="${medicamentoPorId.get().getQuantidadeMinima()} ?: 0"></span></h6>
+                                <h6>Quantidade mínima</h6>
+                            </div>
+                          
+                            <div>
+                                <h6><span th:text="${quantidadeDeLotes} ?: 0">0</span></h6>
+                                <h6>Quantidade de lote(s)</h6>
+                            </div>
+                          
+                        </div>
+                    </div>
+                </div>
+                <div class="setor-detalhes">
+                    <div class="tabela-lotes">
+                        <div class="th">
+                            <h4>Lote ID</h4>
+                            <h4>Fabricante</h4>
+                            <h4>Qtd medicamento</h4>
+                            <h4>Entrega</h4>
+                            <h4>Fabricação</h4>
+                            <h4>Validade</h4>
+                        </div>
+                        
+                        <div class="td" >
+                            <table>
+                                <tr th:each="informacaoLote : ${informacoesLote}">
+                                    <td><span th:text="${informacaoLote[0]} ?: 0"></span></td>
+                                    <td><span th:text="${informacaoLote[1]} ?: ' '"></span></td>
+                                    <td><span th:text="${informacaoLote[2]} ?: 0"></span></td>
+                                    <td><span th:text="${informacaoLote[3]} ?: ' '"></span></td>
+                                    <td><span th:text="${informacaoLote[4]} ?: ' '"></span></td>
+                                    <td><span th:text="${informacaoLote[5]} ?: ' '"></span></td>
+                                    
+                                </tr>
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <div class="dispensar-medicamento">
+                    <h4>Baixa do medicamento</h4>
+                    <form th:action="@{/baixascontroller/detalhesmedicamento/baixa/{idMedicamento}(idMedicamento=${medicamentoPorId.get().getIdMedicamento()})}" method="post" onsubmit="return verificarQtdLote()"> 
+                        <label class="dmaa" for="nome">Medicamento</label>
+                        <input class="dmaa" type="hidden" name="nomeUsuario" th:value="${nomeUsuario}">
+                        <input class="dmab" type="hidden" name="nomeMedicamento" id="nome" th:value="${medicamentoPorId.get().getNomeMedicamento()}">
+                        <input class="dmab" type="text"  id="nome" th:value="${medicamentoPorId.get().getNomeMedicamento()}" disabled>
+	
+                        <label class="dmba" for="lote-id">Lote ID</label>
+                        <select class="dmbb" name="idLoteUnique" id="loteId" required >
+                            <option value="" selected>Selecione um lote</option>
+                            <option th:each="idLote : ${idLotes}" th:value="${idLote[0]}" th:text="${idLote[1]}"></option>
+                        </select>
+
+                        <label class="dmca" for="quantidade">Quantidade <i class="fa-regular fa-circle-question" style="color: #000000;" title="Digite a quantidade de medicamentos para realizar a baixa"></i></label>
+                        <input class="dmcb" type="number" name="quantidadeMedicamento" id="quantidadeRetirada" min="1" required>
+						<p id="erroQtdLoteSaida"></p>
+						
+                        <label class="dmda" for="data">Data da baixa</label>
+                        <input class="dmdb" type="date" name="dataSaida" id="data" required>
+
+                        <button class="btn-dm" type="submit">Baixar</button>
+                    </form>
+                </div>
+               
+            </div>
+        </div>
+        <div id="modal" class="modal">
+			<h3 id="mensagemModal" th:text="${mensagem}"></h3>
+		</div>
+    </main>
+</body>
+
+
+<script src="/js/saudacao.js"></script>
+<script src="/js/qtdLoteVerificacao.js"></script>
+
+
+
+
+</html>

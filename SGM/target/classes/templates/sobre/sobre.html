@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sobre o SGM</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/reset.css">
+
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+	<style>
+		.scrollable {
+			max-height: 91vh;
+			/* Defina a altura máxima em relação à altura da tela (70% da altura da tela) */
+			overflow-y: auto;
+			/* Habilita a barra de rolagem vertical quando o conteúdo ultrapassa a altura máxima */
+			padding: 0px;
+			/* Espaçamento interno */
+		}
+        .dash{
+            padding-right: 05px;
+            padding-top: 0px;
+        }
+	</style>
+
+
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+
+				<a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin "><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre active"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda "><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div class="dash">
+			<div class="scrollable">
+				<h1>Sobre o Projeto de Gestão de Medicamentos</h1>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Bem-vindo ao projeto de Gestão de Medicamentos, uma iniciativa inovadora que
+					criei com base na minha formação no curso de <strong>Formação Inicial e Continuada de Desenvolvimento
+					(FICDEV).</strong>
+					&nbsp;Este sistema foi desenvolvido para fins de aprendizagem do funcionamento de
+					sistemas de gestão de medicamentos em casos reais, com o objetivo de otimizar a administração de
+					medicamentos
+					em uma variedade de contextos, incluindo hospitais, clínicas e farmácias.</p>
+				<br>
+				<h2>O curso que deu Origem ao Projeto</h2>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Minha jornada teve início com a inspiradora formação que recebi no curso FICDEV em março de 2023. Este curso notável foi
+					oferecido pela
+					<strong> Secretaria de Estado de Ciência, Tecnologia e Inovação do Estado de Mato Grosso (SECITECI)</strong> em parceria com o <strong>Centro de Inovação, Redes Inteligentes e Soluções Criativas (RISC)</strong> da <strong> Universidade do Estado de Mato Grosso (UNEMAT)</strong>, e sua dedicação está em capacitar
+					indivíduos, como eu, com habilidades essenciais em tecnologia. Durante esse programa,
+					adquiri conhecimentos iniciais em uma variedade de tecnologias, que serviram como alicerces
+					fundamentais para a criação deste projeto.
+				</p>
+				<br>
+				<p><strong>Durante esse curso, que culminou em setembro do mesmo ano, eu adquiri conhecimento nas seguintes tecnologias:</strong></p>
+				<br>
+				<ul>
+					
+					<li><strong>BackEnd - Java:</strong> A linguagem de programação Java foi a base sólida que permitiu
+						a criação da API para esse sistema de gestão de medicamentos.</li>
+					<li><strong>Banco de dados - PostgreSQL:</strong> O curso abordou a administração de bancos de
+						dados, garantindo que os dados fossem armazenados com segurança e eficiência.</li>
+					<li><strong>Criação de páginas dinâmicas - Thymeleaf:</strong> A capacidade de criar páginas web
+						dinâmicas usando Thymeleaf melhorou significativamente a usabilidade do sistema.</li>
+					<li><strong>FrontEnd - HTML, JavaScript, CSS:</strong> As tecnologias web HTML, JavaScript e CSS
+						permitiram uma projeção de uma interface de usuário atraente e funcional.</li>
+					<li><strong>Design de Interface - Figma:</strong> Para criar o design visual do projeto, utilizei
+						o software Figma, que me permitiu desenvolver uma interface elegante e amigável para os
+						usuários.</li>
+					<li><strong>Framework Spring Boot:</strong> O conhecimento adquirido sobre o Spring Boot foi
+						fundamental para o desenvolvimento eficiente do sistema.</li>
+				</ul>
+				<br>
+				<h2>Licenciamento de Software</h2>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Meu compromisso com a comunidade e a acessibilidade se reflete na minha
+					escolha de licenciamento de software livre. Isso significa que meu sistema está disponível para uso
+					e adaptação por qualquer pessoa interessada, promovendo a colaboração e o aprimoramento contínuo.
+				</p>
+				<br>
+				<h2>Onde encontrar o repositório do Projeto</h2>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Você pode encontrar o repositório do projeto de Gestão de Medicamentos no meu
+					GitHub, uma plataforma de hospedagem de código aberto. Lá, você terá acesso ao código-fonte completo
+					do sistema e outras informações relacionadas ao projeto.</p>
+
+				<p>Repositório do Projeto no GitHub: <a
+						href="https://github.com/devmarcos23/GestaoDeMedicamentos" style="color: dodgerblue;">[Clique aqui para acesar o
+						repositório]</a> ou através da leitura do QRCode:  <img src="/img/qrcode.png" alt="qrcode"
+						style="height: 90px; vertical-align: middle;"></p>
+			</div>
+
+		</div>
+	</main>
+
+
+</body>
+
+
+
+<script src="/js/saudacao.js" defer></script>
+
+
+
+
+
+
+
+</html>

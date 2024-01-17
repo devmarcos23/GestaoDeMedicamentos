@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Baixas</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/index.css">
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+
+				<a th:href="@{/baixas}" class="registro-dispensa active"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin "><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda"><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div>
+			<div class="header-dispensa">
+				<h2>Baixas</h2>
+				<span>(<span th:text="${contagemDeDispensa}">00</span>)</span>
+			</div>
+			<div class="main-dispensa">
+				<div class="top-dispensa">
+					<div class="pesquisar">
+						<form th:action="@{/baixas/listacostumizada}" method="post">
+							<input placeholder="Pesquisar por Id Lote" type="text" name="idLote" id="pesquisar">
+							<button class="btn-search" type="submit"><i
+									class="fa-solid fa-magnifying-glass"></i></button>
+						</form>
+					</div>
+				</div>
+				<div class="setor-dispensa">
+					<div class="tabela-dispensa">
+						<div class="th">
+							<h4>Usuário</h4>
+							<h4>Medicamento</h4>
+							<h4>Qtd medicamento </h4>
+							<h4>Data da baixa</h4>
+							<h4>Lote ID</h4>
+						</div>
+						<div class="td">
+							<table>
+								<tr th:each="controle : ${totalControleSaida}">
+									<td><span th:text="${controle[0]}"></span></td>
+									<td><span th:text="${controle[1]}"></span></td>
+									<td><span th:text="${controle[2]}"></span></td>
+									<td><span th:text="${controle[3]}"></span></td>
+									<td><span th:text="${controle[4]}"></span></td>
+
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+	</main>
+</body>
+
+<script src="/js/saudacao.js"></script>
+
+
+
+</html>

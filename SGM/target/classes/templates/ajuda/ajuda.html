@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ajuda</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<style>
+		.scrollable {
+			max-height: 91vh;
+			/* Defina a altura máxima em relação à altura da tela (70% da altura da tela) */
+			overflow-y: auto;
+			/* Habilita a barra de rolagem vertical quando o conteúdo ultrapassa a altura máxima */
+			padding: 0px;
+			/* Espaçamento interno */
+		}
+
+		.dash {
+			padding-right: 05px;
+			padding-top: 0px;
+		}
+
+
+
+		/* Adicione um estilo de destaque à tag alvo h3 */
+		h3 {
+			background-color: #EDF1F5;
+			color: #000;
+			transition: background-color 3s ease;
+		}
+
+		h3:target {
+			background-color: yellow;
+			color: black;
+			animation: revertColor 3s forwards;
+		}
+
+		@keyframes revertColor {
+			0% {
+				background-color: yellow;
+				color: black;
+			}
+
+			100% {
+				background-color: #EDF1F5;
+				color: #000;
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+
+				<a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin "><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda active"><i
+						class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div class="dash">
+			<div class="scrollable">
+				<h1>Ajuda</h1>
+				<br>
+				<h2>Tópicos</h2>
+				<br>
+				<h4>Clique em um desses tópicos para você ser direcionado:</h4>
+				<br>
+				<br>
+				<strong>
+					<p><a href="#medicamento">Medicamentos.............................................1</a></p>
+					<p><a href="#fabricante">Fabricantes..................................................2</a></p>
+					<p><a href="#dashboard">Dashboard....................................................3</p></a>
+					<p><a href="#baixas">Baixas............................................................4</p></a>
+					<p><a href="#sobre">Sobre..............................................................5</p></a>
+					<p><a href="#lotes">Lotes...............................................................6</p></a>
+				</strong>
+				<br>
+				<br>
+				<br>
+
+
+				<h3 id="medicamento">1<code>&deg;</code> Medicamentos</h3>
+				<br>
+				<h4>1.1 Funcionalidade</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, você pode visualizar todos os medicamentos cadastrados no
+					sistema.
+				</p>
+				<br>
+				<h4>1.2 Botão novo medicamento</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Utilize este botão para realizar o cadastro de novos medicamentos no sistema.
+				</p>
+				<br>
+				<h4>1.3 Botão editar</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Clique neste botão para efetuar edição nas informações do medicamento já
+					registrado.</p>
+				<br>
+				<h4>1.3 Botão detalhes</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Esta opção permite que você obtenha informações mais detalhadas sobre um
+					medicamento específico da lista.</p>
+				<br>
+				<br>
+				<br>
+
+
+
+				<h3 id="fabricante">2<code>&deg;</code> Fabricantes</h3>
+				<br>
+				<h4>2.1 Funcionalidade</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, você pode visualizar todos os fabricantes cadastrados no
+					sistema.</p>
+				<br>
+				<h4>2.2 Botão novo fabricante</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Utilize este botão para realizar o cadastro de novos fabricantes no sistema.
+				</p>
+				<br>
+				<h4>1.3 Botão editar</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Clique neste botão para efetuar edição nas informações do fabricante já
+					registrado.</p>
+				<br>
+				<br>
+				<br>
+
+
+
+
+				<h3 id="dashboard">3<code>&deg;</code> Dashboard</h3>
+				<br>
+				<h4>3.1 Alertas</h4>
+				<br>
+				<h4>3.1.1 Alerta de Status</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Exibe o status do estoque como "bom" quando não há lotes próximos de vencer,
+					ou "ruim" caso contrário.</p>
+				<br>
+				<h4>3.1.2 Alerta de Vencimento</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Sinaliza lotes que estão a menos de 30 dias do vencimento, com acesso direto
+					às informações desses lotes na opção "Visualizar lotes >>".</p>
+				<br>
+
+				<h4>3.2 Cards</h4>
+				<br>
+				<h4>3.2.1 Estoque</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Número de Medicamentos:</strong> Exibe a quantidade de medicamentos
+					disponíveis no estoque, somando todos os lotes.</p>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Número de Lotes:</strong> Exibe a quantidade de lotes presentes no
+					estoque.</p>
+				<br>
+				<h4>3.2.2 Baixas</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Total de Medicamentos:</strong> Exibe a soma total das baixas de
+					medicamentos realizadas.
+				</p>
+				<br>
+				<h4>3.2.3 Fabricantes</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Total:</strong> Exibe o total de fabricantes cadastrados no sistema.
+				</p>
+				<br>
+				<h4>3.2.4 Maiores baixas</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Nome do Medicamento:</strong> Exibe o nome do medicamento com o maior
+					número de baixas no sistema.
+				</p>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;<strong>Total:</strong> Exibe a quantidade total de baixas deste medicamento.
+				</p>
+				<br>
+				<br>
+
+
+
+				<h3 id="baixas">4<code>&deg;</code> Baixas</h3>
+				<br>
+				<h4>4.1 Funcionalidade</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Exibe informações sobre as baixas medicamentosas realizadas, fornecendo um
+					registro completo das transações.</p>
+				<br>
+				<br>
+				<br>
+
+
+				<h3 id="sobre">5<code>&deg;</code> Sobre</h3>
+				<br>
+				<h4>5.1 Funcionalidade</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, você encontrará informações detalhadas sobre o projeto de gestão
+					de medicamentos, seu propósito e sua importância.</p>
+				<br>
+				<br>
+				<br>
+
+
+				<h3 id="lotes">6<code>&deg;</code> Lotes</h3>
+				<br>
+				<h4>6.1 Funcionalidade</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Nesta seção, você pode visualizar todos os lotes cadastrados no sistema.</p>
+				<br>
+				<h4>6.2 Botão novo lote</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Utilize este botão para realizar o cadastro de novos lotes no sistema.
+				</p>
+				<br>
+				<h4>6.2.1 Página novo lote</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Para cadastrar um novo lote,
+					primeiro é necessário registrar medicamentos e fabricantes. Posteriormente, você poderá
+					selecioná-los nos seus respectivos campos de seleção na página de criação de um novo lote.
+				</p>
+				<br>
+				<h4>6.3 Botão editar</h4>
+				<br>
+				<p>&nbsp;&nbsp;&nbsp;&nbsp;Clique neste botão para efetuar edição nas informações do lote já registrado.
+				</p>
+				<br>
+				<br>
+				<br>
+
+
+			</div>
+
+		</div>
+	</main>
+</body>
+
+<script src="/js/saudacao.js"></script>
+
+</html>

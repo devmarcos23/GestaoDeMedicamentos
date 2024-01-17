@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Editar lote</title>
+
+	<link rel="shortcut icon" href="/img/treatment.png" type="image/x-icon">
+
+	<link rel="stylesheet" href="/css/reset.css">
+	<link rel="stylesheet" href="/css/index.css">
+	<link rel="stylesheet" href="/css/mensagemDeSucesso.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+		integrity="sha512-uKQ39gEGiyUJl4AI6L+ekBdGKpGw4xJ55+xyJG7YFlJokPNYegn9KwQ3P8A7aFQAUtUsAQHep+d/lrGqrbPIDQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+		integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<script src="/js/exibirModal.js"></script>
+</head>
+
+<body>
+	<header>
+		<div class="logo">
+			<i class="fa-regular fa-hospital"></i>
+			<p>SGM</p>
+		</div>
+		<div class="temp">
+			<div>
+				<p id="saudacao"></p>
+				<p id="data"></p>
+			</div>
+
+			<img id="img">
+
+		</div>
+	</header>
+
+	<main>
+		<nav>
+			<div class="user">
+				<img src="/img/Rectangle 7.png" alt="Foto de perfil">
+				<div>
+					<p class="username" th:text="${nomeUsuario}"></p>
+					<p class="usertype" th:text="${cargoUsuario}" style="color: #009099;"></p>
+				</div>
+				<a class="dropdown" th:href="@{/logout}"><i class="fa-solid fa-right-from-bracket"></i></a>
+			</div>
+
+			<div class="menus">
+				<a th:href="@{/dashboard}" class="dashboard "><i class="fa-solid fa-chart-line"></i>Estatísticas</a>
+				<a th:href="@{/lotes/listalotes}" class="novo-lote active"><i class="fa-solid fa-box-open"></i>Lotes</a>
+				<a th:href="@{/medicamentos/listamedicamentos}" class="medicamentos"><i
+						class="fa-solid fa-dolly"></i>Estoque</a>
+				<a th:href="@{/fabricantes/listafabricantes}" class="fabricantes "><i
+						class="fa-solid fa-truck-medical"></i>Fabricantes</a>
+						
+				<a th:href="@{/baixas}" class="registro-dispensa"><i class="fa-solid fa-pen-to-square"></i>Baixas</a>
+				
+				<span th:if="${cargoUsuario == role_admin || cargoUsuario == role_super_admin}">
+					<a th:href="@{/espacoadmin}" class="admin "><i
+							class="fa-solid fa-shield-halved"></i>Administração</a>
+				</span>
+				<a th:href="@{/sobrecontroller}" class="sobre"><i class="fa-regular fa-lightbulb"></i>Sobre</a>
+				<a th:href="@{/ajudacontroller}" class="ajuda"><i class="fa-solid fa-handshake-angle"></i>Ajuda</a>
+			</div>
+
+			<div class="footer">
+				<p>Criado por Marcos © 2023</p>
+				<p>v1</p>
+			</div>
+		</nav>
+
+		<div>
+			<div class="top-novo-lote">
+				<a th:href="@{/lotes/listalotes}">
+					<i class="retornar fa-solid fa-reply"></i>
+					<h2>Lotes</h2>
+					<span id="quantidade-lotes">(<span th:text="${contagemLotes}">00</span>)</span>
+				</a>
+				<p>> Editar lote</p>
+			</div>
+			<p>Todos os campos são obrigatórios</p>
+			<form th:action="@{/lotescontroller/editarlote}" method="post" onsubmit="return verificarDatas()">
+				<input name="idLoteUnique" type="hidden" th:value="${findLoteByid.get().getIdLoteUnique}">
+
+				<label class="aaa" for="lote-id">Lote ID</label>
+				<input required class="aab" type="text" name="idLote" id="lote-id"
+					th:value="${findLoteByid.get().getIdLote}">
+
+
+				<label class="bba" for="nome-medicamento">Nome do Medicamento <i class="fa-regular fa-circle-question"
+						style="color: #000000;"
+						title="Para selecionar o nome é preciso primeiro cadastrar o medicamento. Opção disponivel no menu em 'estoque'"></i></label>
+				<select required class="bbb" name="idMedicamento" id="nome-medicamento">
+					<option value="" selected>Selecione um medicamento</option>
+					<option th:each="medicamento : ${nomesMedicamentosAndId}" th:value="${medicamento[0]}"
+						th:text="${medicamento[1]}"></option>
+				</select>
+
+				<label class="cca" for="fabricante">Nome do Fabricante <i class="fa-regular fa-circle-question"
+						style="color: #000000;"
+						title="Para selecionar o nome é preciso primeiro cadastrar o fabricante. Opção disponivel no menu em 'fabricantes'"></i></label>
+				<select required class="ccb" name="idFabricante" id="fabricante">
+					<option value="" selected>Selecione um fabricante</option>
+					<option th:each="fabricante : ${nomesFabricantesAndId}" th:value="${fabricante[0]}"
+						th:text="${fabricante[1]}"></option>
+				</select>
+
+				<label class="dda" for="quantidade">Quantidade de Medicamentos</label>
+				<input required class="ddb" type="number" name="quantidadeMedicamento" id="quantidade" min="1"
+					th:value="${findLoteByid.get().getQuantidadeMedicamento}">
+
+				<label class="eea" for="data-entrega">Data da Entrega <i class="fa-regular fa-circle-question"
+						style="color: #000000;" title="Defina a data que o lote foi entregue"></i></label>
+				<input required class="eeb" type="date" name="dataEntrega" id="data-entrega"
+					th:value="${findLoteByid.get().getDataEntrega}">
+				<p class="erro-msg" id="erroDataEntrega"></p>
+
+
+				<label class="ffa" for="data-fabricacao">Data da Fabricação <i class="fa-regular fa-circle-question"
+						style="color: #000000;" title="Defina a data que o lote foi fabricado"></i></label>
+				<input required class="ffb" type="date" name="dataFabricacao" id="data-fabricacao"
+					th:value="${findLoteByid.get().getDataFabricacao}">
+				<p class="erro-msg" id="erroDataFabricacao"></p>
+
+				<label class="gga" for="data-vencimento">Data de Vencimento <i class="fa-regular fa-circle-question"
+						style="color: #000000;" title="Defina a data que o lote irá vencer"></i></label>
+				<input required class="ggb" type="date" name="dataValidade" id="data-vencimento"
+					th:value="${findLoteByid.get().getDataValidade}">
+				<p class="erro-msg" id="erroDataValidade"></p>
+
+				<button class="btn-novo-lote" type="submit" style="background-color: #03A9F5;">Atualizar</button>
+			</form>
+		</div>
+		<div id="modal" class="modal">
+			<h3 id="mensagemModal" th:text="${mensagem}"></h3>
+		</div>
+	</main>
+</body>
+
+
+<script src="/js/saudacao.js"></script>
+<script src="/js/verificarDatas.js"></script>
+
+
+
+
+</html>
