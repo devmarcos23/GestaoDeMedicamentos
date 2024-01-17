@@ -28,9 +28,5 @@ Você pode visualizar o design do projeto no Figma clicando no link abaixo:
 
 Meu compromisso com a comunidade e a acessibilidade se reflete na minha escolha de licenciamento de software livre. Isso significa que meu sistema está disponível para uso e adaptação por qualquer pessoa interessada, promovendo a colaboração e o aprimoramento contínuo.
 
-## Contribuições
 
-Se você deseja contribuir para este projeto, sinta-se à vontade para abrir problemas (issues) ou enviar solicitações de pull. Estamos abertos a melhorias e sugestões.
-
-Agradecemos por seu interesse em meu projeto e esperamos que ele seja útil para a comunidade!
 
